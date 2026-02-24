@@ -13,19 +13,23 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://your-app-name.vercel.app"],
-  credentials: true
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://moviebookingfrontend-gold.vercel.app",
+    "https://moviebookingfrontend-9hs0taph7-mhdraneeshpop123-8141s-projects.vercel.app"
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 
 app.use(express.json());
-app.use(cookieParser());
-app.use('/api/users', userRoutes);
-app.use('/api/bookings', bookingRoutes);
 
 
 
 // Routes
 app.use('/api/users', userRoutes);
+app.use('/api/bookings', bookingRoutes);
 app.use('/api/movies', require('./routes/movieRoutes'));
 
 const PORT = process.env.PORT || 5000;
